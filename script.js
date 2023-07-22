@@ -1,6 +1,7 @@
+const boardWidth = 3
+
 window.onload = function() {
   const boardContainer = document.getElementById("board-container")
-  const boardWidth = 3
 
   for(let i = 0; i < (boardWidth*boardWidth); i++) {
     let element = document.createElement("div")
@@ -26,22 +27,30 @@ function onGridItemClick(id, leftClick) {
   if(item.innerHTML == "X" || item.innerHTML == "O") {}
   
   // If so, edit item. leftClick => "X", !leftClick => "O"
-  if(leftClick) {
-    item.innerHTML = "X"
-  }
-  else {
-    item.innerHTML = "O"
-  }
+  item.innerHTML = leftClick ? "X" : "O"
 
   // check for win or draw
   board = []
   elems = document.getElementsByClassName("grid-item")
-  
-  for(let i in elems) {
+ 
+  for(let i = 0; i < boardWidth*boardWidth; i++) {
     board.push(elems[i].innerHTML)
   }
 }
 
 function getMoveResult(board) {
+  // Horizontal
+  // 0, 1, 2 or 3, 4, 5 or 6, 7, 8
+  // Check if X or O
+
+  // Vertical
+  // 0, 3, 6 or 1, 4, 7 or 2, 5, 8
+
+  // Diagonal
+
+  // Draw => If board full
+  
+  // Continue => None of the above
+
   // 0 => Continue, 1 => Noughts win, 2 => Crosses win, 3 => Draw
 }
