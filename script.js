@@ -38,6 +38,9 @@ function onGridItemClick(id, leftClick) {
   }
 
   // Check for move result
+  const result = getMoveResult(board)
+  let resultHeader = document.getElementById("result")
+  resultHeader.innerHTML = "Result: " + result
 }
 
 function allElementsMatch(array) {
@@ -107,7 +110,7 @@ function getMoveResult(board) {
   for(let i = 0; i < boardWidth-1; i++) {
     // Horizontal
     let horizontalSlice = []
-    for(let j = i*boardWidth; i < (i+1)*bw - 1; j++) {
+    for(let j = i*boardWidth; i < (i+1)*boardWidth - 1; j++) {
       horizontalSlice.push(board[j])
     }
 
