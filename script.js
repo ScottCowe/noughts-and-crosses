@@ -107,39 +107,40 @@ function getMoveResult(board) {
 
   // 0 => Continue, 1 => Noughts win, 2 => Crosses win, 3 => Draw
 
-  // TODO: Fix bugs
+  let horizontalSlice = []
+  let verticalSlice = []
+  let descendingDiagonalSlice = []
+  let ascendingDiagonalSlice = []
+
   for(let i = 0; i < boardWidth-1; i++) {
     // Horizontal
-    let horizontalSlice = []
     for(let j = (i*boardWidth); j < ((i+1)*boardWidth - 1); j++) {
       horizontalSlice.push(board[j])
     }
-    console.log("H: " + horizontalSlice)
 
     // Vertical
-    let verticalSlice = []
     for(let j = 0; j < boardWidth-1; j++) {
       verticalSlice.push(board[j*boardWidth + i])
     }
-    console.log("V: " + verticalSlice)
 
     // Diagonal
-    let descendingDiagonalSlice = []
     descendingDiagonalSlice.push(board[i*(boardWidth+1)])
-    let ascendingDiagonalSlice = []
     ascendingDiagonalSlice.push(board[i*(boardWidth-1) + (boardWidth-1)])
+  }
 
-    // Check if game won
-    let slices = [horizontalSlice, verticalSlice, descendingDiagonalSlice, ascendingDiagonalSlice]
-    for(let j = 0; j < slices.length; j++) {
-      let slice = slices[j]
-      if(allElementsMatch(slice)) {
-        switch(slice[0]) {
-          case "X":
-            return 1;
-          case "O":
-            return 2;
-        }
+  // Check if game won
+  let slices = [horizontalSlice, verticalSlice, descendingDiagonalSlice, ascendingDiagonalSlice]
+  for(let j = 0; j < slices.length; j++) {
+    let slice = slices[j]
+
+    console.log(j + " " + slice)
+
+    if(allElementsMatch(slice)) {
+      switch(slice[0]) {
+        case "X":
+          return 1;
+        case "O":
+          return 2;        
       }
     }
   }
