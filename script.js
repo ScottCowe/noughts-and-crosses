@@ -69,11 +69,6 @@ function tooDifyBoard(boardArray, boardLength) {
 
 function getMoveResult(board) {
   // 0 => Continue, 1 => Noughts win, 2 => Crosses win, 3 => Draw
-  
-  // Turn board array into 2D array
-  // get horizontal and vertical slices
-  // get diagonal slices
-  // add slices to array
 
   // for each slice in slices check if winner
   // if so, first elem in array determines noughts or crosses
@@ -108,6 +103,33 @@ function getMoveResult(board) {
     ascSlice.push(array[boardWidth - 1 - i][i])
   }
   slices.push(ascSlice)
+  
+  // Check for winner
+  for(let i = 0; i < slices.length; i++) {
+    const currentSlice = slices[i]
+    if(allElementsMatch(currentSlice)) {
+      switch(currentSlice[0]) {
+        case "X":
+          return 1
+        case "O":
+          return 2
+      }
+    }
+  }
+
+  // Check for draw
+  // If every square is filled with "X" or "O" then it is a draw, as there is no winner
+  let draw = true
+  for(let i = 0; i < (boardWidth ** 2); i++) {
+    if(board[i] == "") {
+      draw = false
+      break;
+    }
+  }
+
+  if(draw) {
+    return 3
+  }
 
   return 0
 }
