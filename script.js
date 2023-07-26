@@ -1,4 +1,4 @@
-const boardWidth = 3
+const boardWidth = 5
 
 window.onload = function() {
   const boardContainer = document.getElementById("board-container")
